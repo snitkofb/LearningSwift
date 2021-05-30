@@ -11,7 +11,7 @@
 
 ### Propagating Errors Using Throwing Functions
 
-```
+```swift
 func canThrowErrors() throws -> String
 
 func cannotThrowErrors() -> String
@@ -46,7 +46,7 @@ try vendinMachine.vend(itemNamed: snackName)
 
 ### Do Catch
 
-``` 
+```swift 
 vendingMachine.coinsDeposited = 8
 do {
     try buyFavoriteSnack(person: "Alice", vendingMachine: vendingMachine)
@@ -64,7 +64,7 @@ do {
 
 You can also do:
 
-```
+```swift
 do {
 	try [a thing]
 } catch [pattern 1] where condition {
@@ -79,7 +79,7 @@ do {
 
 For example:
 
-```
+```swift
 catch is VendingMachineError
 ```
 
@@ -87,13 +87,13 @@ Would catch any error that is a VendingMachineError
 
 ### Converting Errors to Optional Values
 
-```
+```swift
 let x = try? canThrowErrors()
 ```
 
 is functionally equivalent to 
 
-```
+```swift
 let x = Int?
 do {
 	y = try canThrowErrors()
@@ -108,7 +108,7 @@ It does let you write concise error handling code if all errors are handled iden
 
 ### Disabling Errors Propagation
 
-```
+```swift
 let photo = try! loadImage(atPath: "./Resources/John.jpg")
 ```
 
