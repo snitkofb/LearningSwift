@@ -11,7 +11,7 @@
 
 ### Propagating Errors Using Throwing Functions
 
-'''' 
+```
 func canThrowErrors() throws -> String
 
 func cannotThrowErrors() -> String
@@ -42,4 +42,4 @@ func vend(itemNamed name: String) throws {
 
 try vendinMachine.vend(itemNamed: snackName)
 
-''''
+```
