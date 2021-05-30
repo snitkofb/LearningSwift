@@ -43,3 +43,73 @@ func vend(itemNamed name: String) throws {
 try vendinMachine.vend(itemNamed: snackName)
 
 ```
+
+### Do Catch
+
+``` 
+vendingMachine.coinsDeposited = 8
+do {
+    try buyFavoriteSnack(person: "Alice", vendingMachine: vendingMachine)
+    print("Success! Yum.")
+} catch VendingMachineError.invalidSelection {
+    print("Invalid Selection.")
+} catch VendingMachineError.outOfStock {
+    print("Out of Stock.")
+} catch VendingMachineError.insufficientFunds(let coinsNeeded) {
+    print("Insufficient funds. Please insert an additional \(coinsNeeded) coins.")
+} catch {
+    print("Unexpected error: \(error).")
+}
+```
+
+You can also do:
+
+```
+do {
+	try [a thing]
+} catch [pattern 1] where condition {
+
+	things
+} catch [pattern 2], [pattern 3] {
+	things
+} catch [pattern 4], [pattern 5] where condition{
+	more things
+}
+```
+
+For example:
+
+```
+catch is VendingMachineError
+```
+
+Would catch any error that is a VendingMachineError
+
+### Converting Errors to Optional Values
+
+```
+let x = try? canThrowErrors()
+```
+
+is functionally equivalent to 
+
+```
+let x = Int?
+do {
+	y = try canThrowErrors()
+}catch {
+	y = nil
+}
+```
+
+Now you handle optionals instead of catching all the errors, but this will provide less information to you and the user.
+
+It does let you write concise error handling code if all errors are handled identically. (You know, usually ignored.)
+
+### Disabling Errors Propagation
+
+```
+let photo = try! loadImage(atPath: "./Resources/John.jpg")
+```
+
+If it doesn't work, it'll crash. So, that's one way to find the error.
